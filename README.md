@@ -3,7 +3,7 @@ emby挂载alist媒体库
 
 
 一、前提  
-配置好的Alist服务端和Emby服务端
+配置好的Alist服务端和Emby服务端  
 Emby的strm文件应用参考：https://emby.media/support/articles/Strm-Files.html  
 
 
