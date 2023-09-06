@@ -33,29 +33,16 @@ def list_files(webdav_url, username, password):
 		else:
 			wenjian.append(file)
 	return mulu,wenjian
-	#print(files)
-	# 生成本地txt文件路径
-	#local_file_path = 'file_list.txt'
-	
-	# with open(local_file_path, 'w') as file:
-		# # 写入文件名和链接到txt文件，并输出
-		# for file_info in files:
-			# file_name = file_info['path'].split('/')[-1]
-			# file_link = webdav_url + file_info['path']
-			
-			# file.write(f"{file_name}: {file_link}")
-			# print(f"{file_name}: {file_link}")
-	
-	# print(f"文件列表已保存到 {local_file_path}")
+
 
 # 输入WebDAV地址、用户名和密码
-webdav_url = 'http://tevin.dynv6.net:5244/dav/guest/阿里云盘alist/电影/'
-save_mulu='Z:/OpenWrt/mnt/mmcblk2p4/TV/电影/'
-username = 'admin'
-password = 'admin'
+webdav_url = 'yourdomain:port/dav/guest/阿里云盘alist/电影/'#alist webdav 地址
+save_mulu='Z:/OpenWrt/mnt/mmcblk2p4/TV/电影/'#输出路径
+username = 'yourusername'#用户名
+password = 'yourpassword'#密码
 
 # 调用函数获取文件列表并保存到本地
-#r1,r2=list_files(webdav_url, username, password)
+
 l_0=list_files(webdav_url, username, password)[0]
 l_1=list_files(webdav_url, username, password)[1]
 
@@ -88,12 +75,12 @@ for b in wenjian_all:
 			try:
 				os.makedirs(os.path.dirname(save_mulu+b.replace(webdav_url,'')[:-3]+'strm'),exist_ok=True)
 				with open(save_mulu+b.replace(webdav_url,'')[:-3]+'strm',"w",encoding='utf-8') as f:
-					f.write(b.replace('tevin.dynv6.net:5244/dav','192.168.0.222:5244/d'))
+					f.write(b.replace('/dav','/d'))
 			except:
 				try:
 					os.makedirs(os.path.dirname(save_mulu+b.replace(webdav_url,'').replace('：','.')[:-3]+'strm'),exist_ok=True)
 					with open(save_mulu+b.replace(webdav_url,'').replace('：','.')[:-3]+'strm',"w",encoding='utf-8') as f:
-						f.write(b.replace('tevin.dynv6.net:5244/dav','192.168.0.222:5244/d'))
+						f.write(b.replace('/dav','/d'))
 				except:
 					print(b.replace(webdav_url,'')+'处理失败，文件名包含特殊符号，建议重命名！')
 	elif b[-3:].upper() in ['ASS','SRT','SSA']:
